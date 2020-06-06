@@ -11,6 +11,12 @@ if (strtolower($path[0]) == "api" &&
   // continuing
   $continue = true;
   //echo "Entering report handler";
+
+} else if (strtolower($path[0]) == "healthcheck")
+
+  echo '{"msg": "ok"}';
+  die();
+
 } else {
   http_response_code(404);
   echo "404";
