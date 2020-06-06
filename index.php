@@ -12,7 +12,7 @@ if (strtolower($path[0]) == "api" &&
   $continue = true;
   //echo "Entering report handler";
 
-} else if (strtolower($path[0]) == "healthcheck")
+} else if (strtolower($path[0]) == "healthcheck") {
 
   echo '{"msg": "ok"}';
   die();
