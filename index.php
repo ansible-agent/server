@@ -9,13 +9,13 @@ array_shift($path);
 if (strtolower($path[0]) == "api" &&
     strtolower($path[1]) == "new-report") {
   // continuing
-  echo "Entering report handler";
+  $continue = true;
+  //echo "Entering report handler";
 } else {
   http_response_code(404);
   echo "404";
   die();
 }
-
 
 $fp = fopen('/var/www/html/request.log', 'a');
 
@@ -45,6 +45,3 @@ fwrite($fp, json_encode($entityBody)."\n");
 
 
 fclose($fp);
-
-?>
-
