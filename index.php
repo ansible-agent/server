@@ -23,7 +23,8 @@ if (strtolower($path[0]) == "api" &&
   die();
 }
 
-$fp = fopen('/var/www/html/request.log', 'a');
+// Log to the docker container's stdout
+$fp = fopen('php://stdout', 'w');
 
 $entityBody = json_decode(file_get_contents('php://input'));
 // TODO: check for pubkey attribute before using
