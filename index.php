@@ -35,7 +35,8 @@ $requiredValues = ["hostname","runtimeSeconds","exitCode","runMode","key"];
 $missingOptions = [];
 foreach ($requiredValues as $o) {
   if(property_exists($entityBody, $o)) {
-    echo "Found $o";
+    // echo "Found $o";
+    $found=true;
   } else {
     $missingOptions[] = $o;
   }
@@ -46,6 +47,8 @@ if ( count($missingOptions) > 0) {
   echo "400 BAD REQUEST: missing options: " . join($missingOptions,", ");
   die();
 }
+
+echo "Reporting success";
 
 fwrite($fp, json_encode($entityBody)."\n");
 
