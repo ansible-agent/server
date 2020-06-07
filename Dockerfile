@@ -5,4 +5,7 @@ COPY index.php /var/www/html/index.php
 COPY site.conf /etc/apache2/sites-enabled/000-default.conf
 RUN a2enmod alias
 
+# Log to container stdout
+RUN ln -sf /dev/stdout /var/www/html/request.log
+
 EXPOSE 80
