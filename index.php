@@ -44,7 +44,7 @@ if(property_exists($entityBody, "status") &&
 
 if (strtolower($entityBody->status) == "started") {
   $requiredValues = ["hostname","runMode"];
-else if (strtolower($entityBody->status) == "complete") {
+} else if (strtolower($entityBody->status) == "complete") {
   $requiredValues = ["hostname","runtimeSeconds","exitCode","runMode","key"];
 }
 
