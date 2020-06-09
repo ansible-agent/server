@@ -30,8 +30,23 @@ $entityBody = json_decode(file_get_contents('php://input'));
 // TODO: check for pubkey attribute before using
 $entityBody->key = $_SERVER['HTTP_PUBLIC_KEY'];
 
-// Validate attributes
-$requiredValues = ["hostname","runtimeSeconds","exitCode","runMode","key"];
+// Validate status
+$allowedStatus = ["started","complete"];
+
+if(property_exists($entityBody, "status") &&
+  in_array(strtolower($entityBody->status),$allowedStatus)) {
+    $found=true;
+} else {
+  header( 'HTTP/1.1 400 BAD REQUEST' );
+  echo "400 BAD REQUEST: specify a valid status";
+  die();
+}
+
+if (strtolower($entityBody->status) == "started") {
+  $requiredValues = ["hostname","runMode"];
+else if (strtolower($entityBody->status) == "complete") {
+  $requiredValues = ["hostname","runtimeSeconds","exitCode","runMode","key"];
+}
 
 $missingOptions = [];
 foreach ($requiredValues as $o) {
