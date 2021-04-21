@@ -7,7 +7,7 @@ $path = explode("/", $_SERVER['REQUEST_URI']);
 array_shift($path);
 
 if (strtolower($path[0]) == "api" &&
-    strtolower($path[1]) == "new-report") {
+    strtolower($path[1]) == "report") {
   // continuing
   $continue = true;
   //echo "Entering report handler";
